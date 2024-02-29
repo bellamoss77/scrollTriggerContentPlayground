@@ -14,19 +14,59 @@
     <header>
         <div class="logo-container">
             <img class="pvcc" alt="PVCC ARTS logo" src="logos/PVCC_ARTS_Logo.png">
-            <img src="logos/VAHumanities_White.png" alt="Virginia Humanities logo" class="vahum">
+            <img class="vahum" src="logos/VAHumanities_White.png" alt="Virginia Humanities logo">
         </div>
         <div class="nav-container">
             <a href="#">Home</a>
             <a href="#">Performance</a>
         </div>
     </header>
-    <h1 class="galleryTitle">Written Works</h1>
-    <h3 class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero, eligendi ratione? Voluptatem consequatur laudantium, sit amet ut deserunt veritatis veniam dolore et eaque alias exercitationem officia totam, repellat a tempore quibusdam quidem hic ducimus odit voluptatum. Neque, recusandae? Nobis tempora rem expedita mollitia. Repellat, debitis?</h3>
-    <h5 class="quote-attribution">-Ben Sloan, etc etc</h5>
-    <div id="nanogallery2"></div>
-        
+    <div class="gallery-title">
+        <h1>Written Works</h1>
+    </div>
+    <div class="gallery-description">
+        <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero, eligendi ratione? Voluptatem consequatur laudantium, sit amet ut deserunt veritatis veniam dolore et eaque alias exercitationem officia totam, repellat a tempore quibusdam quidem hic ducimus odit voluptatum. Neque, recusandae? Nobis tempora rem expedita mollitia. Repellat, debitis?</h2>
+    </div>
+    <div class="quote-attribution">
+        <h5>-Ben Sloan, etc etc</h5>
+    </div>
     
+    <div id="image-gallery">
+        <div class="gallery-img" data-pdf="#">
+            <img src="STOCK_IMGS/autumn_t.png" alt="autumn">
+            <h3 class="caption">Essay 1</h3>
+        </div>
+        <div class="gallery-img" data-pdf="#">
+            <img src="STOCK_IMGS/beach_t.png" alt="beach">
+            <h3 class="caption">Essay 2</h3>
+        </div>
+        <div class="gallery-img" data-pdf="#">
+            <img src="STOCK_IMGS/city_t.png" alt="city">
+            <h3 class="caption">Essay 3</h3>
+        </div>
+        <div class="gallery-img" data-pdf="#">
+            <img src="STOCK_IMGS/day-beach_t.png" alt="day beach">
+            <h3 class="caption">Essay 4</h3>
+        </div>
+        <div class="gallery-img" data-pdf="#">
+            <img src="STOCK_IMGS/geese_t.png" alt="geese">
+            <h3 class="caption">Essay 5</h3>
+        </div>
+        <div class="gallery-img" data-pdf="#">
+            <img src="STOCK_IMGS/road_t.png" alt="road">
+            <h3 class="caption">Essay 6</h3>
+        </div>
+        <div class="gallery-img" data-pdf="#">
+            <img src="STOCK_IMGS/teacup_t.png" alt="teacup">
+            <h3 class="caption">Essay 7</h3>
+        </div>
+    </div>
+    <div id="lightbox" style="display: none;">
+        <span id="close">
+            <i class="fa-regular fa-circle-xmark"></i>
+            <iframe id="pdf-viewer" src="" style="width: 80%; height: 80%;"></iframe>
+        </span>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js" integrity="sha512-lhK7xTsFM6DPXOtQQyPe+NmpoFEheKDHjM/5QzpFRiE1KySgtBfEzYz4XowvB+CAWcBLBGWinhh41uNaOtrSZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
