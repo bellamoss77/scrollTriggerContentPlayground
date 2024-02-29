@@ -6,7 +6,6 @@ gsap.to('.gallery-title', {
         start: 'top top',
         end: 'bottom bottom',
         scrub: true,
-        markers: true,
         onLeave: () => document.querySelector('header').classList.add('fixed-header')
     },
     opacity: 0
@@ -18,7 +17,6 @@ gsap.from('.gallery-description', {
         start: 'top center +=10%',
         end: 'bottom 80%',
         scrub: true, 
-        markers: true
     },
     x: '-100%',
     y: 0,
@@ -55,7 +53,6 @@ gsap.from('.left-slide-in', {
         start: 'top bottom += 5%',
         end: 'bottom center',
         scrub: true,
-        markers: true
     },
     x: '-100%',
     opacity: 0,

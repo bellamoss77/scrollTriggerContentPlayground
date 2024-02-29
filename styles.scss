@@ -37,6 +37,29 @@ $silver: rgba(227,227,227,1);
     }
 }
 
+@keyframes colorChangePulse {
+    0% {
+        color: #fff;
+        transform: scale(1);
+    }
+    25% {
+        color: #ddb9f5;
+        transform: scale(1.25);
+    }
+    50% {
+        color: #fff;
+        transform: scale(1);
+    }
+    75% {
+        color: #ddb9f5;
+        transform: scale(1.25);
+    }
+    100% {
+        color: #fff;
+        transform: scale(1);
+    }
+}
+
 
 
 /*  STYLES  */
@@ -70,10 +93,15 @@ header {
         width: 20vw;
         height: 100%;
         @include flex(row, flex-start, center);
-        img {
+        a {
             height: 100%;
-            width: auto;
             margin: 0 5px;
+            padding: 0;
+            img {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
         }
     }
     .nav-container {
@@ -84,6 +112,10 @@ header {
             text-decoration: none;
             color: #fff;
             font-size: 1.2rem;
+            transform-origin: center;
+            &:hover {
+                animation: colorChangePulse 3s infinite;
+            }
         }
     }
 }
