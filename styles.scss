@@ -14,6 +14,11 @@ $silver: rgba(227,227,227,1);
     align-items: $align;
 }
 
+@keyframes slideIn {
+    from {transform: translateX(-100);}
+    to {transform: translateX(0);}
+}
+
 
 
 /*  STYLES  */
@@ -58,50 +63,66 @@ header {
         }
     }
 }
-.gallery-title {
+.gallery-info {
     width: 100%;
-    height: 100vh;
-    @include flex(row, center, center);
-    h1 {
-        font-size: 7rem;
+    @include flex(column, center, center);
+    .gallery-title {
+        width: 100%;
+        height: 100vh;
+        @include flex(row, center, center);
+        h1 {
+            font-size: 7rem;
+            color: $indigo;
+        }
+    }
+    .gallery-description {
+        width: 60%;
+        height: 90vh;
+        @include flex(row, center, center);
+        text-align: center;
+        font-size: 1.5rem;
+        font-style: italic;
         color: $indigo;
     }
-}
-.gallery-description {
-    width: 60%;
-    height: 90vh;
-    @include flex(row, center, center);
-    font-size: 1.5rem;
-    font-style: italic;
-    text-align: center;
-    color: $indigo;
-}
-.quote-attribution {
+    .quote-attribution {
     width: 90%;
+    margin-top: 5%;
     @include flex(row, flex-end, flex-start);
     font-size: 1.75rem;
     font-style: italic;
     color: $indigo;
+    }
 }
 
 #image-gallery {
+    border: 2px solid red;
     width: 100vw;
     margin: 2%;
-    @include flex(row, center, center);
-    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    //gap: 15px;
+    row-gap: 10px;
+    transition: 0.3s;
     flex-wrap: wrap;
     .gallery-img {
         overflow: hidden;
         transform-origin: center;
+        transform: scale(0.5);
         position: relative;
         padding: 0;
-        margin: 2vw;  
+        margin: 0;  
         filter: brightness(50%);
+        img {
+            border: 5px solid $indigo;
+            margin: 0;
+            padding: 0;
+        }     
         .caption {
             background-color: rgba(0,0,0,0.5);
             border-radius: 5px;
             padding: 3%;
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: #fff;
             position: absolute;
             bottom: 5%;
@@ -109,9 +130,15 @@ header {
         }
         &:hover {
             filter: brightness(100%);
-            transform: scale(1.1);
+            margin: 5% 10%;
             cursor: pointer;
-        }    
+            img {
+                transform: scale(1.25);
+            }
+            .caption {
+                animation: slideIn 1s forwards;
+                text-align: center;
+            }
+            }    
+        }
     }
-    
-}

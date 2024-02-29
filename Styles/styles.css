@@ -1,5 +1,13 @@
 @import url("https://use.typekit.net/efa7ivj.css");
 /*  MIXINS, VARIABLES, KEYFRAMES   */
+@keyframes slideIn {
+  from {
+    transform: translateX(-100);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
 /*  STYLES  */
 * {
   margin: 0;
@@ -53,7 +61,14 @@ header .nav-container a {
   font-size: 1.2rem;
 }
 
-.gallery-title {
+.gallery-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.gallery-info .gallery-title {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -61,26 +76,25 @@ header .nav-container a {
   justify-content: center;
   align-items: center;
 }
-.gallery-title h1 {
+.gallery-info .gallery-title h1 {
   font-size: 7rem;
   color: rgb(48, 14, 105);
 }
-
-.gallery-description {
+.gallery-info .gallery-description {
   width: 60%;
   height: 90vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  text-align: center;
   font-size: 1.5rem;
   font-style: italic;
-  text-align: center;
   color: rgb(48, 14, 105);
 }
-
-.quote-attribution {
+.gallery-info .quote-attribution {
   width: 90%;
+  margin-top: 5%;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -91,28 +105,35 @@ header .nav-container a {
 }
 
 #image-gallery {
+  border: 2px solid red;
   width: 100vw;
   margin: 2%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  row-gap: 10px;
+  transition: 0.3s;
   flex-wrap: wrap;
 }
 #image-gallery .gallery-img {
   overflow: hidden;
   transform-origin: center;
+  transform: scale(0.5);
   position: relative;
   padding: 0;
-  margin: 2vw;
+  margin: 0;
   filter: brightness(50%);
+}
+#image-gallery .gallery-img img {
+  border: 5px solid rgb(48, 14, 105);
+  margin: 0;
+  padding: 0;
 }
 #image-gallery .gallery-img .caption {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   padding: 3%;
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: #fff;
   position: absolute;
   bottom: 5%;
@@ -120,6 +141,13 @@ header .nav-container a {
 }
 #image-gallery .gallery-img:hover {
   filter: brightness(100%);
-  transform: scale(1.1);
+  margin: 5% 10%;
   cursor: pointer;
+}
+#image-gallery .gallery-img:hover img {
+  transform: scale(1.25);
+}
+#image-gallery .gallery-img:hover .caption {
+  animation: slideIn 1s forwards;
+  text-align: center;
 }/*# sourceMappingURL=styles.css.map */
