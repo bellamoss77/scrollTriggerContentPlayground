@@ -19,6 +19,24 @@ $silver: rgba(227,227,227,1);
     to {transform: translateX(0);}
 }
 
+@keyframes tilePulse {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.25);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.25);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
 
 
 /*  STYLES  */
@@ -31,17 +49,23 @@ $silver: rgba(227,227,227,1);
     box-sizing: border-box;
 }
 body {
-width: 100vw;
-height: 100%;
-@include flex(column, center, center);
-font-family: $primaryFont;
+    position: relative;
+    width: 100vw;
+    height: 100%;
+    @include flex(column, center, center);
+    font-family: $primaryFont;
 }
 
 header {
+    position: fixed;
+    top: 0;
+    z-index: 1000;
     width: 100%;
     height: 5vh;
+    transform: translateY(-100%);
     background-color: $indigo;
     @include flex(row, space-between, center);
+    
     .logo-container {
         width: 20vw;
         height: 100%;
@@ -68,26 +92,33 @@ header {
     @include flex(column, center, center);
     .gallery-title {
         width: 100%;
-        height: 100vh;
-        @include flex(row, center, center);
+        height: 50vh;
+        padding: 50vh 0 100vh 0;
+        margin-bottom: 25vh;
+        @include flex(row, center, flex-start);
         h1 {
             font-size: 7rem;
             color: $indigo;
         }
     }
     .gallery-description {
+        line-height: 200%;
+        transform-origin: top;
         width: 60%;
-        height: 90vh;
+        height: 150vh;
         @include flex(row, center, center);
         text-align: center;
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         font-style: italic;
+        font-weight: 200;
         color: $indigo;
+        margin-bottom: 15%;
+        padding-top: 50%;
     }
     .quote-attribution {
     width: 90%;
     margin-top: 5%;
-    @include flex(row, flex-end, flex-start);
+    @include flex(row, flex-end, flex-end);
     font-size: 1.75rem;
     font-style: italic;
     color: $indigo;
@@ -95,24 +126,22 @@ header {
 }
 
 #image-gallery {
-    border: 2px solid red;
+    position: relative;
     width: 100vw;
     margin: 2%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-items: center;
-    //gap: 15px;
+    @include flex(row, center, center);
+    flex-wrap: wrap;
     row-gap: 10px;
     transition: 0.3s;
     flex-wrap: wrap;
     .gallery-img {
         overflow: hidden;
         transform-origin: center;
-        transform: scale(0.5);
         position: relative;
         padding: 0;
-        margin: 0;  
-        filter: brightness(50%);
+        margin: 5%;  
+        filter: brightness(80%);
+        border-radius: 25px;
         img {
             border: 5px solid $indigo;
             margin: 0;
@@ -122,7 +151,7 @@ header {
             background-color: rgba(0,0,0,0.5);
             border-radius: 5px;
             padding: 3%;
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: #fff;
             position: absolute;
             bottom: 5%;
@@ -130,10 +159,11 @@ header {
         }
         &:hover {
             filter: brightness(100%);
-            margin: 5% 10%;
             cursor: pointer;
+            animation: tilePulse 3s infinite;
             img {
-                transform: scale(1.25);
+                //transform: scale(1.25) translateY(-12%);
+                border-bottom: none;
             }
             .caption {
                 animation: slideIn 1s forwards;

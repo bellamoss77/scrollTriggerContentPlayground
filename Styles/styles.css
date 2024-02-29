@@ -8,6 +8,23 @@
     transform: translateX(0);
   }
 }
+@keyframes tilePulse {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.25);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 /*  STYLES  */
 * {
   margin: 0;
@@ -16,6 +33,7 @@
 }
 
 body {
+  position: relative;
   width: 100vw;
   height: 100%;
   display: flex;
@@ -26,8 +44,12 @@ body {
 }
 
 header {
+  position: fixed;
+  top: 0;
+  z-index: 1000;
   width: 100%;
   height: 5vh;
+  transform: translateY(-100%);
   background-color: rgb(48, 14, 105);
   display: flex;
   flex-direction: row;
@@ -70,27 +92,34 @@ header .nav-container a {
 }
 .gallery-info .gallery-title {
   width: 100%;
-  height: 100vh;
+  height: 50vh;
+  padding: 50vh 0 100vh 0;
+  margin-bottom: 25vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 .gallery-info .gallery-title h1 {
   font-size: 7rem;
   color: rgb(48, 14, 105);
 }
 .gallery-info .gallery-description {
+  line-height: 200%;
+  transform-origin: top;
   width: 60%;
-  height: 90vh;
+  height: 150vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-style: italic;
+  font-weight: 200;
   color: rgb(48, 14, 105);
+  margin-bottom: 15%;
+  padding-top: 50%;
 }
 .gallery-info .quote-attribution {
   width: 90%;
@@ -98,19 +127,21 @@ header .nav-container a {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  align-items: flex-start;
+  align-items: flex-end;
   font-size: 1.75rem;
   font-style: italic;
   color: rgb(48, 14, 105);
 }
 
 #image-gallery {
-  border: 2px solid red;
+  position: relative;
   width: 100vw;
   margin: 2%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   row-gap: 10px;
   transition: 0.3s;
   flex-wrap: wrap;
@@ -118,11 +149,11 @@ header .nav-container a {
 #image-gallery .gallery-img {
   overflow: hidden;
   transform-origin: center;
-  transform: scale(0.5);
   position: relative;
   padding: 0;
-  margin: 0;
-  filter: brightness(50%);
+  margin: 5%;
+  filter: brightness(80%);
+  border-radius: 25px;
 }
 #image-gallery .gallery-img img {
   border: 5px solid rgb(48, 14, 105);
@@ -133,7 +164,7 @@ header .nav-container a {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   padding: 3%;
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #fff;
   position: absolute;
   bottom: 5%;
@@ -141,11 +172,11 @@ header .nav-container a {
 }
 #image-gallery .gallery-img:hover {
   filter: brightness(100%);
-  margin: 5% 10%;
   cursor: pointer;
+  animation: tilePulse 3s infinite;
 }
 #image-gallery .gallery-img:hover img {
-  transform: scale(1.25);
+  border-bottom: none;
 }
 #image-gallery .gallery-img:hover .caption {
   animation: slideIn 1s forwards;
