@@ -1,0 +1,16 @@
+@import url("https://use.typekit.net/efa7ivj.css");
+
+/*  MIXINS, VARIABLES, KEYFRAMES   */
+
+$primaryFont: "sofia-pro-soft", sans-serif;
+$indigo: rgba(48,14,105,1);
+$silver: rgba(227,227,227,1);
+
+@mixin flex($direction, $justify, $align) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+/*  STYLES  */
