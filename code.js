@@ -18,11 +18,9 @@ gsap.from('.gallery-description', {
         end: 'bottom 80%',
         scrub: true, 
     },
-    x: '-100%',
-    y: 0,
     opacity: 0,
     ease: 'power2.inOut',
-    duration: 3
+    duration: 2
 });
 
 gsap.to('header', {
@@ -43,46 +41,9 @@ gsap.from('.quote-attribution', {
         end: 'top center',
         scrub: true
     },
-    x: 200,
     opacity: 0
 });
 
-gsap.from('.left-slide-in', {
-    scrollTrigger: {
-        trigger: '.left-slide-in',
-        start: 'top bottom += 5%',
-        end: 'bottom center',
-        scrub: true,
-    },
-    x: '-100%',
-    opacity: 0,
-    ease: 'bounce',
-    duration: 2
-})
-
-gsap.from('.fade-in', {
-    scrollTrigger: {
-        trigger: '.fade-in',
-        start: 'top bottom += 5%',
-        end: 'bottom-center',
-        scrub: true
-    },
-    opacity: 0,
-    duration: 2
-});
-
-gsap.from('.right-slide-in', {
-    scrollTrigger: {
-        trigger: '.right-slide-in',
-        start: 'top bottom += 5%',
-        end: 'bottom-center',
-        scrub: true
-    },
-    x: '100%',
-    opacity: 0,
-    ease: 'bounce',
-    duration: 2
-});
 
 document.addEventListener('DOMContentLoaded', (event) => {
     const lightbox = document.getElementById('lightbox');
