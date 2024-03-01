@@ -214,4 +214,32 @@ header .nav-container a:hover {
 #image-gallery .gallery-img:hover .caption {
   animation: slideIn 1s forwards;
   text-align: center;
+}
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+.lightbox .lightbox-content {
+  position: relative;
+  padding: 10%;
+  max-width: 80%;
+  max-height: 80%;
+}
+.lightbox .lightbox-content #close {
+  position: absolute;
+  top: 5%;
+  right: 10%;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
 }/*# sourceMappingURL=styles.css.map */

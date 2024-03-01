@@ -37,42 +37,45 @@
         </div>
     
     <div id="image-gallery">
-        <div class="gallery-img left-slide-in" data-pdf="PCAP_Essay_PDFs/Education-Transcendence.pdf">
+        <div class="gallery-img left-slide-in" data-pdf="PDFs/Education-Transcendence.pdf">
             <img src="previewImages/Education-Transcendence.png" alt="Illustration of stack of books" width="350" height="350">
             <h3 class="caption">Educational Transcendence</h3>
         </div>
-        <div class="gallery-img fade-in" data-pdf="PCAP_Essay_PDFs/Glasses-In-the-Air.pdf">
+        <div class="gallery-img fade-in" data-pdf="PDFs/Glasses-In-the-Air.pdf">
             <img src="previewImages/Glasses-in-the-Air.png" alt="clinking champaign flutes illustration" width="350" height="350">
             <h3 class="caption">Glasses in the Air to My Fashion and Hair</h3>
         </div>
-        <div class="gallery-img right-slide-in" data-pdf="PCAP_Essay_PDFs/Life-and-Learning-to-Survive.pdf">
+        <div class="gallery-img right-slide-in" data-pdf="PDFs/Life-and-Learning-to-Survive.pdf">
             <img src="previewImages/Life-and-Learning.png" alt="illustration of a tree"  width="350" height="350">
             <h3 class="caption">Life and Learning to Survive</h3>
         </div>
-        <div class="gallery-img left-slide-in" data-pdf="PCAP_Essay_PDFs/Man-Behind-theMustache.pdf">
+        <div class="gallery-img left-slide-in" data-pdf="PDFs/Man-Behind-theMustache.pdf">
             <img src="previewImages/Man-Behind-the-Mustache.png" alt="Mustachioed silhouette" width="350" height="350">
             <h3 class="caption">The Man Behind the Mustache</h3>
         </div>
-        <div class="gallery-img fade-in" data-pdf="PCAP_Essay_PDFs/A-Moment-In-My-Arms.pdf">
+        <div class="gallery-img fade-in" data-pdf="PDFs/A-Moment-In-My-Arms.pdf">
             <img src="previewImages/Moment-In-My-Arms.png" alt="Silhouette of a baby" width="350" height="350">
             <h3 class="caption">A Moment in my Arms, Forever in my Heart</h3>
         </div>
-        <div class="gallery-img right-slide-in" data-pdf="PCAP_Essay_PDFs/The-Arrival.pdf">
+        <div class="gallery-img right-slide-in" data-pdf="PDFs/The-Arrival.pdf">
             <img src="previewImages/The-Arrival.png" alt="illustration of handcuffs" width="350" height="350">
             <h3 class="caption">The Arrival</h3>
         </div>
-        <div class="gallery-img fade-in" data-pdf="PCAP_Essay_PDFs/Reason-to-Change.pdf">
+        <div class="gallery-img fade-in" data-pdf="PDFs/Reason-to-Change.pdf">
             <img src="previewImages/Reason-to-Change.png" alt="Illustration of a hand cupping a seedling"  width="350" height="350">
             <h3 class="caption">Reason to Change</h3>
         </div>
     </div>
-    <div id="lightbox" style="display: none;">
-        <span id="close">
-            <i class="fa-regular fa-circle-xmark"></i>
-            <iframe id="pdf-viewer" src="" style="width: 80%; height: 80%;"></iframe>
-        </span>
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <span id="close">
+                <i class="fa-regular fa-circle-xmark"></i>
+            </span>
+            <div id="pdf-render-container"></div>
+        </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.7.570/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.7.570/pdf.worker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js" integrity="sha512-lhK7xTsFM6DPXOtQQyPe+NmpoFEheKDHjM/5QzpFRiE1KySgtBfEzYz4XowvB+CAWcBLBGWinhh41uNaOtrSZA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
