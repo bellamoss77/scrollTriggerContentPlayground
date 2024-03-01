@@ -63,6 +63,7 @@ body {
   justify-content: center;
   align-items: center;
   font-family: "sofia-pro-soft", sans-serif;
+  overflow-x: hidden;
 }
 
 header {
@@ -136,8 +137,9 @@ header .nav-container a:hover {
   color: rgb(48, 14, 105);
 }
 .gallery-info .gallery-description {
-  line-height: 200%;
-  transform-origin: top;
+  line-height: 250%;
+  transform-origin: center;
+  transform: translateY(0);
   width: 60%;
   height: 150vh;
   display: flex;
@@ -145,7 +147,7 @@ header .nav-container a:hover {
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-style: italic;
   font-weight: 200;
   color: rgb(48, 14, 105);

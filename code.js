@@ -14,7 +14,7 @@ gsap.to('.gallery-title', {
 gsap.from('.gallery-description', {
     scrollTrigger: {
         trigger: '.gallery-description',
-        start: 'top center +=10%',
+        start: 'top -=25% top',
         end: 'bottom 80%',
         scrub: true, 
     },
@@ -22,7 +22,7 @@ gsap.from('.gallery-description', {
     y: 0,
     opacity: 0,
     ease: 'power2.inOut',
-    duration: 2
+    duration: 3
 });
 
 gsap.to('header', {
