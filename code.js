@@ -1,5 +1,6 @@
 gsap.registerPlugin(ScrollTrigger);
 
+
 gsap.to('.gallery-title', {
     scrollTrigger: {
         trigger: '.gallery-title',
@@ -14,8 +15,8 @@ gsap.to('.gallery-title', {
 gsap.from('.gallery-description', {
     scrollTrigger: {
         trigger: '.gallery-description',
-        start: 'top -=25% top',
-        end: 'bottom 80%',
+        start: 'top 80%',
+        end: 'bottom bottom',
         scrub: true, 
     },
     opacity: 0,
@@ -44,31 +45,51 @@ gsap.from('.quote-attribution', {
     opacity: 0
 });
 
+function loadAdobeDC(callback) {
+    var adobeScript = document.createElement('script');
+    adobeScript.src = 'https://documentcloud.adobe.com/view-sdk/main.js';
+    adobeScript.onload = callback; // Call the callback function once the script is loaded
+    document.head.appendChild(adobeScript);
+}
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    const lightbox = document.getElementById('lightbox');
-    const pdfRenderContainer = document.getElementById('pdf-render-container');
-    const closeLightboxBtn = document.getElementById('close');
-
+document.addEventListener('DOMContentLoaded', () => {
+    // Function to open the lightbox and load the PDF
     function openLightbox(pdfURL) {
-        gsap.to(lightbox, { autoAlpha: 1, duration: 0.5 });
+        gsap.to('#lightbox', { autoAlpha: 1, duration: 0.5 });
         lightbox.style.display = 'flex';
         lightbox.style.opacity = '1';
         lightbox.style.visibility = 'visible';
-        renderPDF(pdfURL, pdfRenderContainer);
+        lightbox.focus();
+
+        // Delay the PDF initialization to ensure it opens with the lightbox animation
+        setTimeout(() => initializeAdobeDC(pdfURL), 500);
     }
 
+    // Function to close the lightbox
     function closeLightbox() {
-        gsap.to(lightbox, { autoAlpha: 0, duration: 0.5, onComplete: () => {
-            lightbox.style.display = 'none';
-            lightbox.style.opacity = '0';
-            lightbox.style.opacity = 'hidden'
-            pdfRenderContainer.innerHTML = ''; 
+        gsap.to('#lightbox', { autoAlpha: 0, duration: 0.5, onComplete: () => {
+            document.getElementById('lightbox').style.display = 'none';
+            document.getElementById('pdf-render-container').innerHTML = '';
+            lightbox.blur();
         }});
     }
 
-    //pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+    // Initialize Adobe DC View after ensuring the AdobeDC script is loaded
+    function initializeAdobeDC(pdfURL) {
+        loadAdobeDC(() => {
+            if (window.AdobeDC) {
+                var adobeDCView = new AdobeDC.View({ clientId: '0b400b32168e46968edadc4881ee763d', divId: 'pdf-render-container' });
+                adobeDCView.previewFile({
+                    content: { location: { url: pdfURL } },
+                    metaData: { fileName: 'Document.pdf' }
+                }, {});
+            } else {
+                console.error('Failed to load AdobeDC.');
+            }
+        });
+    }
 
+    // Event listeners for gallery images to open the lightbox with the selected PDF
     document.querySelectorAll('.gallery-img').forEach(item => {
         item.addEventListener('click', function() {
             const pdfURL = this.getAttribute('data-pdf');
@@ -76,40 +97,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     });
 
-    closeLightboxBtn.addEventListener('click', closeLightbox);
+    // Event listeners for closing the lightbox
+    const close = document.getElementById('close'); 
+    close.addEventListener('click', closeLightbox);
 
-    lightbox.addEventListener('click', function(e) {
-        if (e.target === lightbox) closeLightbox();
+    const lightbox = document.getElementById('lightbox');
+    lightbox.setAttribute('tabindex', '-1');
+    lightbox.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' || event.keyCode === 27) {
+            closeLightbox();
+        }
     });
 
-    gsap.set(lightbox, { autoAlpha: 0 });
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === this) { closeLightbox(); }
+    });
 
-    function renderPDF(pdfURL, container) {
-        var loadingTask = pdfjsLib.getDocument(pdfURL);
-        loadingTask.promise.then(pdf => {
-            console.log('PDF loaded');
-            
-            pdf.getPage(1).then(page => {
-                console.log('Page loaded');
-                
-                var viewport = page.getViewport({ scale: 1.5 });
-                var canvas = document.createElement('canvas');
-                var context = canvas.getContext('2d');
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
 
-                var renderContext = {
-                    canvasContext: context,
-                    viewport: viewport
-                };
-                
-                page.render(renderContext).promise.then(() => {
-                    console.log('Page rendered');
-                    container.appendChild(canvas);
-                });
-            });
-        }, reason => console.error(reason));
-    }
+    // Initialize GSAP for the lightbox
+    gsap.set('#lightbox', { autoAlpha: 0 });
 });
-  
- 
