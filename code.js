@@ -53,6 +53,63 @@ function loadAdobeDC(callback) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    const essays = [
+        'https://raw.githubusercontent.com/bellamoss77/scrollTriggerContentPlayground/main/PDFs/Education-Transcendence.pdf',
+        'https://raw.githubusercontent.com/bellamoss77/scrollTriggerContentPlayground/main/PDFs/Glasses-in-the-Air.pdf',
+        'https://raw.githubusercontent.com/bellamoss77/scrollTriggerContentPlayground/main/PDFs/Life-and-Learning-to-Survive.pdf',
+        'https://raw.githubusercontent.com/bellamoss77/scrollTriggerContentPlayground/main/PDFs/Man-Behind-the-Mustache.pdf',
+        'https://raw.githubusercontent.com/bellamoss77/scrollTriggerContentPlayground/main/PDFs/A-Moment-In-My-Arms.pdf',
+        'https://raw.githubusercontent.com/bellamoss77/scrollTriggerContentPlayground/main/PDFs/The-Arrival.pdf',
+        'https://raw.githubusercontent.com/bellamoss77/scrollTriggerContentPlayground/main/PDFs/Reason-to-Change.pdf'
+    ];
+
+    const prevButton = document.getElementById('prev');
+    const nextButton = document.getElementById('next');
+    let currentEssayIndex = 0;
+
+    prevButton.style.display = 'none';
+
+    function updateButtons() {
+        if (currentEssayIndex === 0) {
+            prevButton.style.display = 'none';
+            nextButton.style.display = 'block';
+        } else if (currentEssayIndex === essays.length - 1) {
+            prevButton.style.display = 'block';
+            nextButton.style.display = 'none';
+        } else {
+            prevButton.style.display = 'block'
+            nextButton.style.display = 'block'
+        }
+    }
+
+    function loadEssayByIndex(index) {
+        const pdfURL = essays[index];
+        loadEssay(pdfURL);
+        currentEssayIndex = index;
+        updateButtons();
+    }
+
+    function prevEssay() {
+        if (currentEssayIndex > 0) {
+            loadEssayByIndex(currentEssayIndex - 1);
+        }
+    }
+
+    function nextEssay() {
+        if (currentEssayIndex < essays.length - 1) {
+            loadEssayByIndex(currentEssayIndex + 1);
+        }
+    }
+
+    prevButton.addEventListener('click', prevEssay);
+    nextButton.addEventListener('click', nextEssay);
+
+    loadEssayByIndex(currentEssayIndex);
+
+    function loadEssay(pdfURL) {
+        currentEssay = pdfURL;
+        initializeAdobeDC(pdfURL);
+    }
     // Function to open the lightbox and load the PDF
     function openLightbox(pdfURL) {
         gsap.to('#lightbox', { autoAlpha: 1, duration: 0.5 });
@@ -73,6 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
             lightbox.blur();
         }});
     }
+
+    
 
     // Initialize Adobe DC View after ensuring the AdobeDC script is loaded
     function initializeAdobeDC(pdfURL) {
@@ -99,20 +158,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event listeners for closing the lightbox
     const close = document.getElementById('close'); 
-    close.addEventListener('click', closeLightbox);
+        close.addEventListener('click', closeLightbox);
 
-    const lightbox = document.getElementById('lightbox');
-    lightbox.setAttribute('tabindex', '-1');
-    lightbox.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' || event.keyCode === 27) {
-            closeLightbox();
-        }
-    });
+        const lightbox = document.getElementById('lightbox');
+        lightbox.setAttribute('tabindex', '-1');
+       
+        lightbox.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                console.log('Escape key pressed');
+                closeLightbox();
+            }
+        });
 
-    lightbox.addEventListener('click', function(e) {
-        if (e.target === this) { closeLightbox(); }
-    });
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === this) { closeLightbox(); }
+        });
 
+    
+        
+        
 
     // Initialize GSAP for the lightbox
     gsap.set('#lightbox', { autoAlpha: 0 });
