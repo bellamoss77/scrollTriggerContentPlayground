@@ -53,13 +53,6 @@ function loadAdobeDC(callback) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.addEventListener('focus', (event) => {
-        console.log('Focused element: ', document.activeElement);
-    }, true);
-
-    const lightbox = document.getElementById('lightbox');
-    lightbox.setAttribute('tabindex', '-1');
-    const closeBtn = document.getElementById('close');
     // Function to open the lightbox and load the PDF
     function openLightbox(pdfURL) {
         gsap.to('#lightbox', { autoAlpha: 1, duration: 0.5 });
@@ -84,6 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
             lightbox.blur();
         }});
     }
+
+    
 
     // Initialize Adobe DC View after ensuring the AdobeDC script is loaded
     function initializeAdobeDC(pdfURL) {
@@ -110,8 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event listeners for closing the lightbox
     const close = document.getElementById('close'); 
-    close.addEventListener('click', closeLightbox);
+        close.addEventListener('click', closeLightbox);
 
+    const lightbox = document.getElementById('lightbox');
     lightbox.setAttribute('tabindex', '-1');
     lightbox.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' || event.keyCode === 27) {
@@ -119,10 +115,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    lightbox.addEventListener('click', function(e) {
-        if (e.target === this) { closeLightbox(); }
-    });
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === this) { closeLightbox(); }
+        });
 
+    
+        
+        
 
     // Initialize GSAP for the lightbox
     gsap.set('#lightbox', { autoAlpha: 0 });

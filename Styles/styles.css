@@ -235,11 +235,25 @@ header .nav-container a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px solid red;
 }
-.lightbox .lightbox-content #pdf-render-container canvas {
-  height: 100%;
-  width: 100%;
+.lightbox .lightbox-content .arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 10000;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 2rem;
+}
+.lightbox .lightbox-content .arrow:hover {
+  cursor: pointer;
+  transform-origin: center;
+  color: rgb(255, 255, 255);
+  transform: scale(1.2);
+}
+.lightbox .lightbox-content #next {
+  right: 10%;
+}
+.lightbox .lightbox-content #prev {
+  left: 10%;
 }
 .lightbox .lightbox-content #close {
   color: #aaaaaa;

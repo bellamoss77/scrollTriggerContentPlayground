@@ -221,12 +221,25 @@ header {
             overflow: auto;
             margin: 0 auto;
             @include flex(column, center, center);
-            border: 2px solid red;
-
-            canvas {
-                height: 100%;
-                width: 100%;
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            z-index: 10000;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 2rem;
+            &:hover {
+                cursor: pointer;
+                transform-origin: center;
+                color: rgba(255, 255, 255, 1);
+                transform: scale(1.2);
             }
+        }
+        #next {
+            right: 10%;
+        }
+        #prev {
+            left: 10%;
         }
 
         #close {
