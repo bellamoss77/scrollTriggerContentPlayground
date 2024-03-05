@@ -53,16 +53,27 @@ function loadAdobeDC(callback) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('focus', (event) => {
+        console.log('Focused element: ', document.activeElement);
+    }, true);
+
+    const lightbox = document.getElementById('lightbox');
+    lightbox.setAttribute('tabindex', '-1');
+    const closeBtn = document.getElementById('close');
     // Function to open the lightbox and load the PDF
     function openLightbox(pdfURL) {
         gsap.to('#lightbox', { autoAlpha: 1, duration: 0.5 });
         lightbox.style.display = 'flex';
         lightbox.style.opacity = '1';
         lightbox.style.visibility = 'visible';
-        lightbox.focus();
+        closeBtn.focus();
 
         // Delay the PDF initialization to ensure it opens with the lightbox animation
         setTimeout(() => initializeAdobeDC(pdfURL), 500);
+
+        setTimeout(() => {
+           lightbox.focus(); 
+        }, 1000);
     }
 
     // Function to close the lightbox
@@ -101,7 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const close = document.getElementById('close'); 
     close.addEventListener('click', closeLightbox);
 
-    const lightbox = document.getElementById('lightbox');
     lightbox.setAttribute('tabindex', '-1');
     lightbox.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' || event.keyCode === 27) {
